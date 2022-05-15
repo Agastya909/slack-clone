@@ -8,9 +8,11 @@ import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import SidebarOption from "./SidebarOption";
 import "./Sidebar.css";
 import db from "./firebase";
+import { useStateValue } from "./StateProvider";
 
 const Sidebar = () => {
   const [channels, setChannels] = useState([]);
+  const [{ user }] = useStateValue();
   useEffect(() => {
     db.collection("rooms").onSnapshot((snapshot) =>
       setChannels(
@@ -29,7 +31,7 @@ const Sidebar = () => {
           <h2>Agastya</h2>
           <h3>
             <FiberManualRecord />
-            Krishna
+            {user}
           </h3>
         </div>
         <CreateIcon />

@@ -9,7 +9,10 @@ const Message = (props) => {
       <div className="message_info">
         <h4>
           {user}
-          <span className="message_timestamp"> {new Date(timestamp?.toDate()).toUTCString()}</span>
+          <span className="message_timestamp">
+            {" "}
+            {new Date(timestamp?.toDate()).toUTCString()}
+          </span>
         </h4>
         <p>{message}</p>
       </div>

@@ -5,6 +5,8 @@ import { useParams } from "react-router";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Message from "./Message";
+import ChatInput from "./ChatInput";
+
 const Chat = () => {
   const { roomId } = useParams();
   const [roomdetails, setroomdetails] = useState(null);
@@ -23,7 +25,7 @@ const Chat = () => {
       .onSnapshot((snapshot) =>
         setroomMessages(snapshot.docs.map((doc) => doc.data()))
       );
-    console.log(roomMessages);
+    // console.log(roomMessages);
   }, [roomId]);
 
   return (
@@ -42,7 +44,6 @@ const Chat = () => {
           </p>
         </div>
       </div>
-
       <div className="chat_messages">
         {roomMessages.map(({ message, timestamp, user, userImage }) => (
           <Message
@@ -53,6 +54,7 @@ const Chat = () => {
           />
         ))}
       </div>
+      <ChatInput channelName={roomdetails?.name} channelId={roomId} />
     </div>
   );
 };
